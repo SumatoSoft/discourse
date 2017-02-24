@@ -5,7 +5,7 @@ end
 
 # we need to run seed_fu every time we run rake db:migrate
 task 'db:migrate' => ['environment', 'set_locale'] do
-  SeedFu.seed
+  # SeedFu.seed
 
   SiteSetting.last_vacuum = Time.now.to_i if SiteSetting.last_vacuum == 0
 
