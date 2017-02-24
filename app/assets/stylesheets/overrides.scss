@@ -7,7 +7,7 @@ a.online {
   position: relative;
 }
 
-span.online, .d-header .icons span.online[class^="fa fa-"] {
+span.online {
   color: #47dc25;
   font-size: 9px;
   position: absolute;
@@ -17,4 +17,13 @@ span.online, .d-header .icons span.online[class^="fa fa-"] {
 
 .d-header .icons span.online[class^="fa fa-"] {
   display: none;
+}
+.user-card-avatar {
+  .online {
+    color: #47dc25;
+    font-size: 18px;
+    position: absolute;
+    right: 9px;
+    bottom: 9px;
+  }
 }
