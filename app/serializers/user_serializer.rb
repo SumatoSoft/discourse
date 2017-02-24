@@ -34,6 +34,7 @@ class UserSerializer < BasicUserSerializer
 
   attributes :name,
              :email,
+             :online,
              :last_posted_at,
              :last_seen_at,
              :bio_raw,
@@ -80,6 +81,10 @@ class UserSerializer < BasicUserSerializer
 
   def include_user_option?
     can_edit
+  end
+
+  def online
+    object.online?
   end
 
   staff_attributes :post_count,

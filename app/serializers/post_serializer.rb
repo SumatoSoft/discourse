@@ -60,6 +60,7 @@ class PostSerializer < BasicPostSerializer
              :deleted_at,
              :deleted_by,
              :user_deleted,
+             :user_online,
              :edit_reason,
              :can_view_edit_history,
              :wiki,
@@ -190,6 +191,10 @@ class PostSerializer < BasicPostSerializer
 
   def user_title
     object.try(:user).try(:title)
+  end
+
+  def user_online
+    object.try(:user).try(:online?)
   end
 
   def trust_level

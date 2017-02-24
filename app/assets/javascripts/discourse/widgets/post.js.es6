@@ -21,12 +21,12 @@ export function avatarImg(wanted, attrs) {
     className: 'avatar'
   };
 
-  return h('img', properties);
+  return attrs.user_online ? [h('img', properties), h('span', { className: 'fa fa-circle online'})] : h('img', properties)
 }
 
 export function avatarFor(wanted, attrs) {
   return h('a', {
-    className: `trigger-user-card ${attrs.className || ''}`,
+    className: `${attrs.user_online ? 'online' : 'offline'} trigger-user-card ${attrs.className || ''}`,
     attributes: { href: attrs.url, 'data-user-card': attrs.username }
   }, avatarImg(wanted, attrs));
 }
@@ -93,6 +93,7 @@ createWidget('post-avatar', {
       body = avatarFor.call(this, this.settings.size, {
         template: attrs.avatar_template,
         username: attrs.username,
+        user_online: attrs.user_online,
         url: attrs.usernameUrl,
         className: 'main-avatar'
       });

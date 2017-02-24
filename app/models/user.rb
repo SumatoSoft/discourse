@@ -199,6 +199,7 @@ class User < ActiveRecord::Base
   end
 
   EMAIL = %r{([^@]+)@([^\.]+)}
+  ONLINE_PERIOD = 120
 
   def self.new_from_params(params)
     user = User.new
@@ -455,7 +456,7 @@ class User < ActiveRecord::Base
 
   def confirm_php_password?(password)
     return false unless php_password && php_salt
-    
+
     if Digest::MD5.hexdigest(Digest::MD5.hexdigest(password) + php_salt) == php_password
       self.update_attributes password: password
       self.email_tokens.delete_all
@@ -920,6 +921,10 @@ class User < ActiveRecord::Base
   def logged_out
     MessageBus.publish "/logout", self.id, user_ids: [self.id]
     DiscourseEvent.trigger(:user_logged_out, self)
+  end
+
+  def online?
+    last_visit_at && Time.now - last_visit_at < ONLINE_PERIOD
   end
 
   protected
