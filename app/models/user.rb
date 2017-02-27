@@ -905,10 +905,6 @@ class User < ActiveRecord::Base
     UserHistory.for(self, :suspend_user).count
   end
 
-  def create_user_profile
-    UserProfile.create(user_id: id)
-  end
-
   def anonymous?
     SiteSetting.allow_anonymous_posting &&
       trust_level >= 1 &&
@@ -926,6 +922,50 @@ class User < ActiveRecord::Base
 
   def online?
     last_visit_at && Time.now - last_visit_at < ONLINE_PERIOD
+  end
+
+  def create_user_stat
+    stat = UserStat.new(new_since: Time.now)
+    stat.user_id = id
+    stat.save!
+  end
+
+  def create_user_option
+    UserOption.create(user_id: id)
+  end
+
+  def create_email_token
+    email_tokens.create(email: email)
+  end
+
+  def create_user_profile
+    UserProfile.create(user_id: id)
+  end
+
+  def ensure_in_trust_level_group
+    Group.user_trust_level_change!(id, trust_level)
+  end
+
+  def set_default_categories_preferences
+    return if self.staged?
+
+    values = []
+
+    %w{watching watching_first_post tracking muted}.each do |s|
+      category_ids = SiteSetting.send("default_categories_#{s}").split("|")
+      category_ids.each do |category_id|
+        values << "(#{self.id}, #{category_id}, #{CategoryUser.notification_levels[s.to_sym]})"
+      end
+    end
+
+    if values.present?
+      exec_sql("INSERT INTO category_users (user_id, category_id, notification_level) VALUES #{values.join(",")}")
+    end
+  end
+
+  def trigger_user_created_event
+    DiscourseEvent.trigger(:user_created, self)
+    true
   end
 
   protected
@@ -953,10 +993,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def ensure_in_trust_level_group
-    Group.user_trust_level_change!(id, trust_level)
-  end
-
   def automatic_group_membership
     user = User.find(self.id)
 
@@ -973,20 +1009,6 @@ class User < ActiveRecord::Base
         GroupActionLogger.new(Discourse.system_user, group).log_add_user_to_group(user)
       end
     end
-  end
-
-  def create_user_stat
-    stat = UserStat.new(new_since: Time.now)
-    stat.user_id = id
-    stat.save!
-  end
-
-  def create_user_option
-    UserOption.create(user_id: id)
-  end
-
-  def create_email_token
-    email_tokens.create(email: email)
   end
 
   def ensure_password_is_hashed
@@ -1050,23 +1072,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def set_default_categories_preferences
-    return if self.staged?
-
-    values = []
-
-    %w{watching watching_first_post tracking muted}.each do |s|
-      category_ids = SiteSetting.send("default_categories_#{s}").split("|")
-      category_ids.each do |category_id|
-        values << "(#{self.id}, #{category_id}, #{CategoryUser.notification_levels[s.to_sym]})"
-      end
-    end
-
-    if values.present?
-      exec_sql("INSERT INTO category_users (user_id, category_id, notification_level) VALUES #{values.join(",")}")
-    end
-  end
-
   # Delete unactivated accounts (without verified email) that are over a week old
   def self.purge_unactivated
     to_destroy = User.where(active: false)
@@ -1083,11 +1088,6 @@ class User < ActiveRecord::Base
         # if for some reason the user can't be deleted, continue on to the next one
       end
     end
-  end
-
-  def trigger_user_created_event
-    DiscourseEvent.trigger(:user_created, self)
-    true
   end
 
   private
