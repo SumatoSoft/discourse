@@ -474,6 +474,17 @@ class UsersController < ApplicationController
     redirect_to cookies[:callback_url]
   end
 
+  def after_create
+    current_user.create_email_token
+    current_user.create_user_stat
+    current_user.create_user_option
+    current_user.create_user_profile
+    current_user.ensure_in_trust_level_group
+    current_user.set_default_categories_preferences
+    current_user.trigger_user_created_event
+    redirect_to cookies[:callback_url]
+  end
+
   def confirm_email_token
     expires_now
     EmailToken.confirm(params[:token])

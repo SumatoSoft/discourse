@@ -15,7 +15,7 @@ class SessionController < ApplicationController
     destination_url = Rails.application.config.auth_url + '/users/sign_in'
     return_path = params[:return_path] || path('/')
 
-    cookies[:callback_url] = Rails.application.config.return_url + return_path
+    cookies[:callback_url] = callback_cookie(return_path)
 
     redirect_to destination_url
   end
@@ -24,7 +24,7 @@ class SessionController < ApplicationController
     destination_url = Rails.application.config.auth_url + '/users/sign_up'
     return_path = params[:return_path] || path('/')
 
-    cookies[:callback_url] = Rails.application.config.return_url + return_path
+    cookies[:callback_url] = callback_cookie(return_path)
 
     redirect_to destination_url
   end
@@ -329,6 +329,16 @@ class SessionController < ApplicationController
       sso_provider(payload)
     end
     render_serialized(user, UserSerializer)
+  end
+
+  private
+
+  def callback_cookie(return_url)
+    {
+      value: Rails.application.config.return_url + return_url,
+      httponly: true,
+      domain: Rails.application.config.cookie_domain
+    }
   end
 
 end

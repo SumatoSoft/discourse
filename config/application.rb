@@ -28,6 +28,7 @@ module Discourse
 
     config.auth_url = ENV['AUTH_URL']
     config.return_url = ENV['DISCOURSE_HOSTNAME']
+    config.cookie_domain = ENV['COOKIE_DOMAIN']
 
     def config.database_configuration
       if Rails.env.production?
