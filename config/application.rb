@@ -26,6 +26,9 @@ end
 module Discourse
   class Application < Rails::Application
 
+    config.auth_url = ENV['AUTH_URL']
+    config.return_url = ENV['DISCOURSE_HOSTNAME']
+
     def config.database_configuration
       if Rails.env.production?
         GlobalSetting.database_config

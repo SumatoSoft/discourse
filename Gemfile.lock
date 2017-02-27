@@ -81,6 +81,10 @@ GEM
     discourse_fastimage (2.0.3)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.2.0)
+    dotenv-rails (2.2.0)
+      dotenv (= 2.2.0)
+      railties (>= 3.2, < 5.1)
     email_reply_trimmer (0.1.6)
     ember-data-source (2.2.1)
       ember-source (>= 1.8, < 3.0)
@@ -399,6 +403,7 @@ DEPENDENCIES
   certified
   discourse-qunit-rails
   discourse_fastimage (= 2.0.3)
+  dotenv-rails
   email_reply_trimmer (= 0.1.6)
   ember-handlebars-template (= 0.7.5)
   ember-rails (= 0.18.5)

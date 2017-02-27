@@ -2,12 +2,31 @@ require_dependency 'rate_limiter'
 require_dependency 'single_sign_on'
 
 class SessionController < ApplicationController
+  AUTH_COOKIE = :_sportenter_session
 
   skip_before_filter :redirect_to_login_if_required
-  skip_before_filter :preload_json, :check_xhr, only: ['sso', 'sso_login', 'become', 'sso_provider', 'destroy']
+  skip_before_filter :preload_json, :check_xhr, only: ['sso', 'sso_signin', 'sso_signup', 'sso_login', 'become', 'sso_provider', 'destroy']
 
   def csrf
     render json: {csrf: form_authenticity_token }
+  end
+
+  def sso_signin
+    destination_url = Rails.application.config.auth_url + '/users/sign_in'
+    return_path = params[:return_path] || path('/')
+
+    cookies[:callback_url] = Rails.application.config.return_url + return_path
+
+    redirect_to destination_url
+  end
+
+  def sso_signup
+    destination_url = Rails.application.config.auth_url + '/users/sign_up'
+    return_path = params[:return_path] || path('/')
+
+    cookies[:callback_url] = Rails.application.config.return_url + return_path
+
+    redirect_to destination_url
   end
 
   def sso
@@ -250,6 +269,7 @@ class SessionController < ApplicationController
   def destroy
     reset_session
     log_off_user
+    cookies.delete(AUTH_COOKIE)
     if request.xhr?
       render nothing: true
     else

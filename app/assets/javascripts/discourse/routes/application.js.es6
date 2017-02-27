@@ -180,7 +180,8 @@ const ApplicationRoute = Discourse.Route.extend(OpenComposer, {
       const returnPath = encodeURIComponent(window.location.pathname);
       window.location = Discourse.getURL('/session/sso?return_path=' + returnPath);
     } else {
-      this._autoLogin('login', 'login-modal', () => this.controllerFor('login').resetForm());
+      const returnPath = encodeURIComponent(window.location.pathname);
+      window.location = Discourse.getURL('/session/sso_signin?return_path=' + returnPath);
     }
   },
 
@@ -189,7 +190,8 @@ const ApplicationRoute = Discourse.Route.extend(OpenComposer, {
       const returnPath = encodeURIComponent(window.location.pathname);
       window.location = Discourse.getURL('/session/sso?return_path=' + returnPath);
     } else {
-      this._autoLogin('createAccount', 'create-account');
+      const returnPath = encodeURIComponent(window.location.pathname);
+      window.location = Discourse.getURL('/session/sso_signup?return_path=' + returnPath);
     }
   },
 

@@ -6,8 +6,10 @@ require_dependency 'wizard/builder'
 
 class UsersController < ApplicationController
 
+  skip_before_filter :preload_json, only: [:after_create]
+
   skip_before_filter :authorize_mini_profiler, only: [:avatar]
-  skip_before_filter :check_xhr, only: [:show, :password_reset, :update, :account_created, :activate_account, :perform_account_activation, :user_preferences_redirect, :avatar, :my_redirect, :toggle_anon, :admin_login]
+  skip_before_filter :check_xhr, only: [:after_create, :show, :password_reset, :update, :account_created, :activate_account, :perform_account_activation, :user_preferences_redirect, :avatar, :my_redirect, :toggle_anon, :admin_login]
 
   before_filter :ensure_logged_in, only: [:username, :update, :user_preferences_redirect, :upload_user_image,
                                           :pick_avatar, :destroy_user_image, :destroy, :check_emails, :topic_tracking_state]
@@ -17,8 +19,9 @@ class UsersController < ApplicationController
   # we need to allow account creation with bad CSRF tokens, if people are caching, the CSRF token on the
   #  page is going to be empty, this means that server will see an invalid CSRF and blow the session
   #  once that happens you can't log in with social
-  skip_before_filter :verify_authenticity_token, only: [:create]
-  skip_before_filter :redirect_to_login_if_required, only: [:check_username,
+  skip_before_filter :verify_authenticity_token, only: [:create, :after_create]
+  skip_before_filter :redirect_to_login_if_required, only: [:after_create,
+                                                            :check_username,
                                                             :create,
                                                             :get_honeypot_value,
                                                             :account_created,
@@ -458,6 +461,17 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def after_create
+    current_user.create_email_token
+    current_user.create_user_stat
+    current_user.create_user_option
+    current_user.create_user_profile
+    current_user.ensure_in_trust_level_group
+    current_user.set_default_categories_preferences
+    current_user.trigger_user_created_event
+    redirect_to cookies[:callback_url]
   end
 
   def confirm_email_token
