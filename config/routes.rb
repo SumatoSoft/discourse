@@ -291,7 +291,7 @@ Discourse::Application.routes.draw do
     end
   end
 
-  get "users/after_create" => "users#after_create", constraints: { format: /(json|html)/ }
+  get "users/after_create" => "users#after_create"
 
   resources :static
   post "login" => "static#enter", constraints: { format: /(json|html)/ }
