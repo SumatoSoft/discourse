@@ -929,7 +929,7 @@ class User < ActiveRecord::Base
   end
 
   def gen_username_by_email
-    base_name = email.split('@')[0]
+    base_name = email.split('@')[0].gsub(/[^\w.-]/, '')
     index = 1
     self.username = base_name
     while User.exists?(username: self.username)
