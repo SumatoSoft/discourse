@@ -46,6 +46,24 @@ describe User do
     end
   end
 
+  describe '#gen_username_by_email' do
+    before(:each) do
+      Fabricate(:user, username: 'atanych')
+    end
+
+    let!(:user) { Fabricate(:user) }
+    it 'generates username by first part of email' do
+      user.email = 'qwe@qwe.qwe'
+      user.gen_username_by_email
+      expect(user.username).to eq 'qwe'
+    end
+    it 'generates username by first part of email and adds digital suffix' do
+      user.email = 'atanych@gmail.com'
+      user.gen_username_by_email
+      expect(user.username).to eq 'atanych1'
+    end
+  end
+
   context '.enqueue_welcome_message' do
     let(:user) { Fabricate(:user) }
 
