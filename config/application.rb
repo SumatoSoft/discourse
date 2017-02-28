@@ -27,7 +27,7 @@ module Discourse
   class Application < Rails::Application
 
     config.auth_url = ENV['AUTH_URL']
-    config.return_url = ENV['DISCOURSE_HOSTNAME']
+    config.return_url = ENV['FORUM_URL']
     config.cookie_domain = ENV['COOKIE_DOMAIN']
 
     def config.database_configuration
