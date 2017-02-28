@@ -269,7 +269,7 @@ class SessionController < ApplicationController
   def destroy
     reset_session
     log_off_user
-    cookies.delete(AUTH_COOKIE)
+    cookies.delete(AUTH_COOKIE, domain: Rails.application.config.cookie_domain)
     if request.xhr?
       render nothing: true
     else
