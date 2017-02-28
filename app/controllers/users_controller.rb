@@ -471,7 +471,7 @@ class UsersController < ApplicationController
     current_user.ensure_in_trust_level_group
     current_user.set_default_categories_preferences
     current_user.trigger_user_created_event
-    redirect_to cookies[:callback_url]
+    redirect_to cookies[:callback_url] || Rails.application.config.return_url
   end
 
   def after_create
