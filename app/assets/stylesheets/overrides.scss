@@ -8,23 +8,37 @@ a.online {
 }
 
 span.online {
-  color: #47dc25;
-  font-size: 9px;
+  color: rgb(66, 183, 42);
+  font-size: 12px;
   position: absolute;
   right: 2px;
   bottom: -14px;
 }
+span.online-wrapper {
+  color: #ffffff;
+  font-size: 18px;
+  position: absolute;
+  right: -1px;
+  bottom: -17px;
+}
 
-.d-header .icons span.online[class^="fa fa-"] {
+.d-header .icons span.online[class^="fa fa-"], .d-header .icons span.online-wrapper[class^="fa fa-"] {
   display: none;
 }
 .user-card-avatar {
   .online {
-    color: #47dc25;
+    color: rgb(66, 183, 42);
     font-size: 18px;
     position: absolute;
     right: 9px;
     bottom: 9px;
+  }
+  .online-wrapper {
+    color: #ffffff;
+    font-size: 25px;
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
   }
 }
 

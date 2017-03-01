@@ -21,7 +21,7 @@ export function avatarImg(wanted, attrs) {
     className: 'avatar'
   };
 
-  return attrs.user_online ? [h('img', properties), h('span', { className: 'fa fa-circle online'})] : h('img', properties)
+  return attrs.user_online ? [h('img', properties), h('span', { className: 'fa fa-circle online-wrapper'}), h('span', { className: 'fa fa-circle online'})] : h('img', properties)
 }
 
 export function avatarFor(wanted, attrs) {
