@@ -31,7 +31,8 @@ function renderAvatar(user, options) {
       size: options.imageSize,
       extraClasses: Em.get(user, 'extras') || options.extraClasses,
       title: title || username,
-      avatarTemplate: avatarTemplate
+      avatarTemplate: avatarTemplate,
+      online: user.user.online
     });
   } else {
     return '';

@@ -32,7 +32,7 @@ createWidget('topic-participant', {
   },
 
   html(attrs, state) {
-    const linkContents = [avatarImg('medium', { username: attrs.username, template: attrs.avatar_template })];
+    const linkContents = [avatarImg('medium', { username: attrs.username, template: attrs.avatar_template, user_online: attrs.online })];
 
     if (attrs.post_count > 2) {
       linkContents.push(h('span.post-count', attrs.post_count.toString()));
@@ -61,14 +61,15 @@ createWidget('topic-map-summary', {
     contents.push(h('li',
       [
         h('h4', I18n.t('created_lowercase')),
-        avatarFor('tiny', { username: attrs.createdByUsername, template: attrs.createdByAvatarTemplate }),
+        avatarFor('tiny', { username: attrs.createdByUsername, template: attrs.createdByAvatarTemplate, user_online: attrs.createdByOnline }),
         dateNode(attrs.topicCreatedAt)
       ]
     ));
+    console.log('attrs', attrs)
     contents.push(h('li',
       h('a', { attributes: { href: attrs.lastPostUrl } }, [
         h('h4', I18n.t('last_reply_lowercase')),
-        avatarFor('tiny', { username: attrs.lastPostUsername, template: attrs.lastPostAvatarTemplate }),
+        avatarFor('tiny', { username: attrs.lastPostUsername, template: attrs.lastPostAvatarTemplate, user_online: attrs.lastPostOnline }),
         dateNode(attrs.lastPostAt)
       ])
     ));

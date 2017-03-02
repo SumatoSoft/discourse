@@ -27,16 +27,12 @@ span.online-wrapper {
 }
 .user-card-avatar {
   .online {
-    color: rgb(66, 183, 42);
     font-size: 18px;
-    position: absolute;
     right: 9px;
     bottom: 9px;
   }
   .online-wrapper {
-    color: #ffffff;
     font-size: 25px;
-    position: absolute;
     right: 6px;
     bottom: 6px;
   }
@@ -49,4 +45,42 @@ nav.post-controls button.widget-button.has-like {
 nav.post-controls button.d-hover, nav.post-controls button.delete.d-hover, nav.post-controls button.like.d-hover {
   color: rgba(31, 32, 34, 0.73);
   background: transparent;
+}
+
+.posters > a {
+  position: relative;
+
+  span.online {
+    font-size: 7px;
+    right: 1px;
+    bottom: 1px;
+  }
+  span.online-wrapper {
+    font-size: 11px;
+    right: -1px;
+    bottom: -2px;
+  }
+}
+
+.topic-map {
+  span.online {
+    font-size: 7px;
+    right: 3px;
+    bottom: -2px;
+  }
+  span.online-wrapper {
+    font-size: 11px;
+    right: 1px;
+    bottom: -5px;
+  }
+  .avatars {
+    span.online {
+      right: 6px;
+      bottom: 1px;
+    }
+    span.online-wrapper {
+      right: 4px;
+      bottom: -2px;
+    }
+  }
 }
