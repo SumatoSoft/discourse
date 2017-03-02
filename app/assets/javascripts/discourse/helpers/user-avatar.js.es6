@@ -32,7 +32,7 @@ function renderAvatar(user, options) {
       extraClasses: Em.get(user, 'extras') || options.extraClasses,
       title: title || username,
       avatarTemplate: avatarTemplate,
-      online: user.user.online
+      online: user && user.user && user.user.online
     });
   } else {
     return '';

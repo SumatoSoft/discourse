@@ -84,3 +84,26 @@ nav.post-controls button.d-hover, nav.post-controls button.delete.d-hover, nav.p
     }
   }
 }
+
+.details {
+  .primary {
+    .avatar-wrapper {
+      position: relative;
+      display: inline;
+      span.online {
+        font-size: 18px;
+        top: 88px;
+        left: -43px;
+        right: auto;
+        bottom: auto;
+      }
+      span.online-wrapper {
+        font-size: 25px;
+        top: 84px;
+        left: -46px;
+        right: auto;
+        bottom: auto;
+      }
+    }
+  }
+}
