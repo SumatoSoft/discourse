@@ -6,7 +6,7 @@ class BasicUserSerializer < ApplicationSerializer
   end
 
   def online
-    user.online?
+    user.is_a?(PostAction) ? user.user.online? : user.try(:online?)
   end
 
   def avatar_template

@@ -8,6 +8,7 @@ export function avatarAtts(user) {
   return { template: user.avatar_template,
            username: user.username,
            post_url: user.post_url,
+           user_online: user.online,
            url: Discourse.getURL('/users/') + user.username_lower };
 }
 

@@ -84,7 +84,7 @@ class UserSerializer < BasicUserSerializer
   end
 
   def online
-    object.online?
+    object.try(:online?)
   end
 
   staff_attributes :post_count,
