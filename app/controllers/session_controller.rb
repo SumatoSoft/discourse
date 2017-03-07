@@ -2,7 +2,7 @@ require_dependency 'rate_limiter'
 require_dependency 'single_sign_on'
 
 class SessionController < ApplicationController
-  AUTH_COOKIE = :_staging_sportenter_session
+  AUTH_COOKIE = :_auth_sportenter_session
 
   skip_before_filter :redirect_to_login_if_required
   skip_before_filter :preload_json, :check_xhr, only: ['sso', 'sso_signin', 'sso_signup', 'sso_login', 'become', 'sso_provider', 'destroy']
