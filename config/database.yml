@@ -6,6 +6,11 @@ development:
   pool: 5
   timeout: 5000
   host_names:
+    ### Don't include the port number here. Change the "port" site setting instead, at /admin/site_settings.
+    ### If you change this setting you will need to
+    ###   - restart sidekiq if you change this setting
+    ###   - rebake all to posts using: `RAILS_ENV=production bundle exec rake posts:rebake`
+    - "localhost"
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
