@@ -51,7 +51,7 @@ export default Ember.Controller.extend(ModalFunctionality, PasswordValidation, {
     if (this.get('formSubmitted')) return true;
     if (this.get('nameValidation.failed')) return true;
     if (this.get('emailValidation.failed')) return true;
-    if (this.get('usernameValidation.failed')) return true;
+    // if (this.get('usernameValidation.failed')) return true;
     if (this.get('passwordValidation.failed')) return true;
 
     // Validate required fields

@@ -23,35 +23,6 @@
             <td><label>{{i18n 'user.email.instructions'}}</label></td>
           </tr>
 
-          {{#if usernameRequired}}
-            <tr class="input">
-                  <td class="label"><label for='new-account-username'>{{i18n 'user.username.title'}}</label></td>
-                  <td>
-                  {{input value=accountUsername id="new-account-username" name="username" maxlength=maxUsernameLength autocomplete="off"}}
-                  &nbsp;{{input-tip validation=usernameValidation id="username-validation"}}
-                  </td>
-            </tr>
-            <tr class="instructions">
-              <td></td>
-              <td><label>{{i18n 'user.username.instructions'}}</label></td>
-            </tr>
-          {{/if}}
-
-          {{#if fullnameRequired}}
-            <tr class="input">
-              <td class="label">
-                <label for='new-account-name'>{{i18n 'user.name.title'}}</label>
-              </td>
-              <td>
-                {{text-field value=accountName id="new-account-name"}}&nbsp;{{input-tip validation=nameValidation}}
-              </td>
-            </tr>
-            <tr class="instructions">
-              <td></td>
-              <td><label>{{nameInstructions}}</label></td>
-            </tr>
-          {{/if}}
-
           {{plugin-outlet name="create-account-before-password"
                           args=(hash accountName=accountName
                                      accountUsername=accountUsername

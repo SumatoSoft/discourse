@@ -307,15 +307,16 @@ class UsersController < ApplicationController
       return fail_with("login.email_too_long")
     end
 
-    if SiteSetting.reserved_usernames.split("|").include? params[:username].downcase
-      return fail_with("login.reserved_username")
-    end
+    # if SiteSetting.reserved_usernames.split("|").include? params[:username].downcase
+    #   return fail_with("login.reserved_username")
+    # end
 
     if user = User.where(staged: true).find_by(email: params[:email].strip.downcase)
       user_params.each { |k, v| user.send("#{k}=", v) }
       user.staged = false
     else
       user = User.new(user_params)
+      user.gen_username_by_email
     end
 
     # Handle custom fields

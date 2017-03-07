@@ -1,7 +1,13 @@
 <td>
   {{~#unless expandPinned}}
-  <div class='pull-left'>
-    <a href="{{topic.lastPostUrl}}">{{avatar topic.lastPoster imageSize="large"}}</a>
+  <div class='pull-left mobile-view' style='position: relative;'>
+    <a href="{{topic.lastPostUrl}}">
+    {{avatar topic.lastPoster imageSize="large"}}
+    {{#if topic.lastPoster.online}}
+      <span class="fa fa-circle online-wrapper"></span>
+      <span class="fa fa-circle online"></span>
+    {{/if}}
+    </a>
   </div>
   <div class='right'>
   {{else}}

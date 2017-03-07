@@ -5,6 +5,10 @@
         {{#with topic.lastPoster as |lastPoster|}}
           {{#user-link user=lastPoster}}
             {{avatar lastPoster imageSize="large"}}
+            {{#if lastPoster.online}}
+              <span class="fa fa-circle online-wrapper"></span>
+              <span class="fa fa-circle online"></span>
+            {{/if}}
           {{/user-link}}
         {{/with}}
       </td>

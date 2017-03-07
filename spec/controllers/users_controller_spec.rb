@@ -431,7 +431,7 @@ describe UsersController do
         SiteSetting.default_locale = 'en'
         I18n.stubs(:locale).returns(:fr)
         post_user
-        expect(User.find_by(username: @user.username).locale).to eq('fr')
+        expect(User.find_by(email: @user.email).locale).to eq('fr')
       end
     end
 
@@ -526,7 +526,7 @@ describe UsersController do
     context "creating as staged" do
       it "won't create the user as staged" do
         xhr :post, :create, post_user_params.merge(staged: true)
-        new_user = User.where(username: post_user_params[:username]).first
+        new_user = User.where(email: post_user_params[:email]).first
         expect(new_user.staged?).to eq(false)
       end
 
@@ -536,7 +536,7 @@ describe UsersController do
 
         it "won't create the user as staged with a regular key" do
           xhr :post, :create, post_user_params.merge(staged: true, api_key: api_key.key)
-          new_user = User.where(username: post_user_params[:username]).first
+          new_user = User.where(email: post_user_params[:email]).first
           expect(new_user.staged?).to eq(false)
         end
       end
@@ -548,7 +548,7 @@ describe UsersController do
         it "creates the user as staged with a regular key" do
           xhr :post, :create, post_user_params.merge(staged: true, api_key: api_key.key)
 
-          new_user = User.where(username: post_user_params[:username]).first
+          new_user = User.where(email: post_user_params[:email]).first
           expect(new_user.staged?).to eq(true)
         end
 
@@ -556,7 +556,7 @@ describe UsersController do
           UsernameCheckerService.expects(:is_developer?).returns(true)
           xhr :post, :create, post_user_params.merge(staged: true, api_key: api_key.key)
 
-          new_user = User.where(username: post_user_params[:username]).first
+          new_user = User.where(email: post_user_params[:email]).first
           expect(new_user.staged?).to eq(false)
         end
       end
@@ -633,7 +633,7 @@ describe UsersController do
       end
 
       it 'should not result in an active account' do
-        expect(User.find_by(username: @user.username).active).to eq(false)
+        expect(User.find_by(email: @user.email).active).to eq(false)
       end
     end
 
@@ -1218,7 +1218,7 @@ describe UsersController do
                 username: user.username,
                 locale: :fa_IR
 
-            expect(User.find_by(username: user.username).locale).to eq('fa_IR')
+            expect(User.find_by(email: user.email).locale).to eq('fa_IR')
           end
 
         end

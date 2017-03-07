@@ -968,6 +968,16 @@ class User < ActiveRecord::Base
     true
   end
 
+  def gen_username_by_email
+    base_name = email.split('@')[0].gsub(/[^\w.-]/, '')
+    index = 1
+    self.username = base_name
+    while User.exists?(username: self.username)
+      self.username = "#{base_name}#{index}"
+      index += 1
+    end
+  end
+
   protected
 
   def badge_grant

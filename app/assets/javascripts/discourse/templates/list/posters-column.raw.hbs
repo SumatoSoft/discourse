@@ -1,5 +1,11 @@
 <td class='posters'>
 {{#each posters as |poster|}}
-<a href="{{poster.user.path}}" data-user-card="{{poster.user.username}}" class="{{poster.extras}}">{{avatar poster avatarTemplatePath="user.avatar_template" usernamePath="user.username" imageSize="small"}}</a>
+<a href="{{poster.user.path}}" data-user-card="{{poster.user.username}}" class="{{poster.extras}}">
+{{avatar poster avatarTemplatePath="user.avatar_template" usernamePath="user.username" imageSize="small"}}
+{{#if poster.user.online}}
+  <span class="fa fa-circle online-wrapper"></span>
+  <span class="fa fa-circle online"></span>
+{{/if}}
+</a>
 {{/each}}
 </td>

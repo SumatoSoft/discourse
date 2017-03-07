@@ -8,23 +8,63 @@ a.online {
 }
 
 span.online {
-  color: #47dc25;
-  font-size: 9px;
+  color: rgb(66, 183, 42);
+  font-size: 12px;
   position: absolute;
   right: 2px;
   bottom: -14px;
 }
 
-.d-header .icons span.online[class^="fa fa-"] {
+span.online-wrapper {
+  color: #ffffff;
+  font-size: 18px;
+  position: absolute;
+  right: -1px;
+  bottom: -17px;
+}
+
+.d-header .icons span.online[class^="fa fa-"], .d-header .icons span.online-wrapper[class^="fa fa-"] {
   display: none;
 }
+
 .user-card-avatar {
   .online {
-    color: #47dc25;
     font-size: 18px;
-    position: absolute;
     right: 9px;
     bottom: 9px;
+  }
+  .online-wrapper {
+    font-size: 25px;
+    right: 6px;
+    bottom: 6px;
+  }
+}
+
+.who-liked {
+  .online {
+    font-size: 10px;
+    right: 1px;
+    bottom: 0px;
+  }
+  .online-wrapper {
+    font-size: 13px;
+    right: 0px;
+    bottom: -1px;
+  }
+}
+
+.mobile-view {
+  > a {
+    > .online {
+      font-size: 10px;
+      right: 1px;
+      bottom: 0px;
+    }
+    > .online-wrapper {
+      font-size: 13px;
+      right: 0px;
+      bottom: -1px;
+    }
   }
 }
 
@@ -35,4 +75,102 @@ nav.post-controls button.widget-button.has-like {
 nav.post-controls button.d-hover, nav.post-controls button.delete.d-hover, nav.post-controls button.like.d-hover {
   color: rgba(31, 32, 34, 0.73);
   background: transparent;
+}
+
+.posters > a {
+  position: relative;
+
+  span.online {
+    font-size: 7px;
+    right: 1px;
+    bottom: 1px;
+    @include small-width {  right: 5px }
+    @include medium-width {  bottom: 0px }
+  }
+  span.online-wrapper {
+    font-size: 11px;
+    right: -1px;
+    bottom: -2px;
+    @include small-width {  right: 3px }
+  }
+}
+
+.topic-map {
+  span.online {
+    font-size: 7px;
+    right: 3px;
+    bottom: -2px;
+    @include small-width {  bottom: -3px; }
+    @include medium-width {  bottom: -3px; }
+  }
+  span.online-wrapper {
+    font-size: 11px;
+    right: 1px;
+    bottom: -5px;
+  }
+  .avatars {
+    span.online {
+      right: 6px;
+      bottom: 1px;
+      @include small-width {  bottom: 0px; }
+      @include medium-width {  bottom: 0px; }
+    }
+    span.online-wrapper {
+      right: 4px;
+      bottom: -2px;
+    }
+  }
+}
+
+.details {
+  .primary {
+    .avatar-wrapper {
+      position: relative;
+      display: inline;
+      span.online {
+        font-size: 18px;
+        top: 88px;
+        left: -43px;
+        right: auto;
+        bottom: auto;
+      }
+      span.online-wrapper {
+        font-size: 25px;
+        top: 84px;
+        left: -46px;
+        right: auto;
+        bottom: auto;
+      }
+    }
+  }
+}
+
+.topic-poster {
+  a {
+    position: relative;
+  }
+}
+
+.google-adsense {
+  .google-adsense-content {
+    margin-left: 0px;
+  }
+}
+
+.badge-wrapper {
+  .badge-category {
+    white-space: normal !important;
+  }
+}
+.topic-bottom-outlet-wrapper {
+  padding: 0px !important;
+  margin: 0px !important;
+  td {
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+  border-bottom: none !important;
+  .google-adsense-content {
+    border-bottom: 1px solid #e9e9e9 !important;
+  }
 }

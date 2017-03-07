@@ -2,8 +2,6 @@ development:
   prepared_statements: false
   adapter: postgresql
   database: discourse_development
-#  user: qweqwe
-#  password: new_password
   min_messages: warning
   pool: 5
   timeout: 5000

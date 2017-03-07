@@ -33,7 +33,13 @@
       <div class='profile-image'></div>
       <div class='details'>
         <div class='primary'>
-          {{bound-avatar model "huge"}}
+          <div class='avatar-wrapper'>
+            {{bound-avatar model "huge"}}
+            {{#if model.online}}
+              <span class="fa fa-circle online-wrapper"></span>
+              <span class="fa fa-circle online"></span>
+            {{/if}}
+          </div>
           <section class='controls'>
             <ul>
               {{#if model.can_send_private_message_to_user}}
