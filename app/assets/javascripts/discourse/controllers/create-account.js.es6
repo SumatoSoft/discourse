@@ -76,7 +76,8 @@ export default Ember.Controller.extend(ModalFunctionality, PasswordValidation, U
   disclaimerHtml: function() {
     return I18n.t('create_account.disclaimer', {
       tos_link: this.get('siteSettings.tos_url') || Discourse.getURL('/tos'),
-      privacy_link: this.get('siteSettings.privacy_policy_url') || Discourse.getURL('/privacy')
+      privacy_link: this.get('siteSettings.privacy_policy_url') || Discourse.getURL('/privacy'),
+      contacts_link: this.get('siteSettings.contacts_url') || Discourse.getURL('/contacts')
     });
   }.property(),
 

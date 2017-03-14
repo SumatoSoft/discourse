@@ -1254,6 +1254,7 @@ en:
     faq_url: "If you have a FAQ hosted elsewhere that you want to use, provide the full URL here."
     tos_url: "If you have a Terms of Service document hosted elsewhere that you want to use, provide the full URL here."
     privacy_policy_url: "If you have a Privacy Policy document hosted elsewhere that you want to use, provide the full URL here."
+    contacts_url: "If you have a Contact Us hosted elsewhere that you want to use, provide the full URL here."
 
     newuser_spam_host_threshold: "How many times a new user can post a link to the same host within their `newuser_spam_host_threshold` posts before being considered spam."
 
@@ -2652,6 +2653,7 @@ en:
   terms_of_service:
     title: "Terms of Service"
     signup_form_message: 'I have read and accept the <a href="/tos" target="_blank">Terms of Service</a>.'
+  contacts: "Contact Us"
 
   deleted: 'deleted'
 
@@ -3035,7 +3037,9 @@ en:
       If we decide to change our privacy policy, we will post those changes on this page.
 
       This document is CC-BY-SA. It was last updated May 31, 2013.
-
+  contacts_topic:
+      title: "Contact Us"
+      body: Fill this
   badges:
     editor:
       name: Editor

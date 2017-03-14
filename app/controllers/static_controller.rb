@@ -15,6 +15,7 @@ class StaticController < ApplicationController
     map = {
       "faq" => {redirect: "faq_url", topic_id: "guidelines_topic_id"},
       "tos" => {redirect: "tos_url", topic_id: "tos_topic_id"},
+      "contacts" => {redirect: "contacts_url", topic_id: "contacts_topic_id"},
       "privacy" => {redirect: "privacy_policy_url", topic_id: "privacy_topic_id"}
     }
 

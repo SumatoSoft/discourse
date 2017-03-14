@@ -1099,6 +1099,9 @@ legal:
   faq_url:
     client: true
     default: ''
+  contacts_url:
+    client: true
+    default: ''
 
 backups:
   readonly_mode_during_backup:
@@ -1282,6 +1285,9 @@ uncategorized:
     default: -1
     hidden: true
   privacy_topic_id:
+    default: -1
+    hidden: true
+  contacts_topic_id:
     default: -1
     hidden: true
 

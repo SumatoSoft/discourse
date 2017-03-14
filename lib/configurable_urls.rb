@@ -12,4 +12,8 @@ module ConfigurableUrls
     SiteSetting.privacy_policy_url.blank? ? "#{Discourse::base_uri}/privacy" : SiteSetting.privacy_policy_url
   end
 
+  def contacts_path
+    SiteSetting.contacts_url.blank? ? "#{Discourse::base_uri}/contacts" : SiteSetting.contacts_url
+  end
+
 end

@@ -4,7 +4,8 @@ import { default as DiscourseURL, jumpToElement } from 'discourse/lib/url';
 const configs = {
   "faq": "faq_url",
   "tos": "tos_url",
-  "privacy": "privacy_policy_url"
+  "privacy": "privacy_policy_url",
+  "contacts": "contacts_url"
 };
 
 export default function(page) {

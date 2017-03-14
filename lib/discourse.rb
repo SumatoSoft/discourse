@@ -389,7 +389,7 @@ module Discourse
   end
 
   def self.static_doc_topic_ids
-    [SiteSetting.tos_topic_id, SiteSetting.guidelines_topic_id, SiteSetting.privacy_topic_id]
+    [SiteSetting.tos_topic_id, SiteSetting.guidelines_topic_id, SiteSetting.privacy_topic_id, SiteSetting.contacts_topic_id]
   end
 
   cattr_accessor :last_ar_cache_reset

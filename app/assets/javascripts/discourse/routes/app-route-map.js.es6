@@ -113,6 +113,7 @@ export default function() {
   this.route('faq', {path: '/faq'});
   this.route('tos', {path: '/tos'});
   this.route('privacy', {path: '/privacy'});
+  this.route('contacts', {path: '/contacts'});
   this.route('guidelines', {path: '/guidelines'});
 
   this.route('new-topic', {path: '/new-topic'});
