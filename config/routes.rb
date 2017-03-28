@@ -281,6 +281,8 @@ Discourse::Application.routes.draw do
   end
 
   get "session/sso" => "session#sso"
+  get "session/sso_signin" => "session#sso_signin"
+  get "session/sso_signup" => "session#sso_signup"
   get "session/sso_login" => "session#sso_login"
   get "session/sso_provider" => "session#sso_provider"
   get "session/current" => "session#current"
@@ -293,6 +295,8 @@ Discourse::Application.routes.draw do
       get "is_local_username"
     end
   end
+
+  get "users/after_create" => "users#after_create"
 
   resources :static
   post "login" => "static#enter", constraints: { format: /(json|html)/ }

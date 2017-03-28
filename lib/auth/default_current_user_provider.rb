@@ -198,7 +198,7 @@ class Auth::DefaultCurrentUserProvider
     elsif user && @user_token
       @user_token.destroy
     end
-    cookies.delete(TOKEN_COOKIE)
+    cookies.delete(TOKEN_COOKIE, domain: Rails.application.config.cookie_domain)
   end
 
 
